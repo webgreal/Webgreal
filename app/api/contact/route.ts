@@ -1,21 +1,40 @@
 import { NextRequest, NextResponse } from 'next/server';
+import { createClient } from '@supabase/supabase-js';
 
 export async function POST(req: NextRequest) {
   try {
     const body = await req.json();
     const { name, email, phone, company, service, budget, message } = body;
 
-    // Logging simulated data received securely server-side
-    console.log('--- Webgreal Server Received Contact Submission ---');
-    console.log('Client Name:', name);
-    console.log('Email:', email);
-    console.log('Phone:', phone);
-    console.log('Company:', company);
-    console.log('Selected Service:', service);
-    console.log('Selected Budget:', budget);
-    console.log('Project Brief:', message);
-    console.log('Timestamp:', new Date().toISOString());
-    console.log('----------------------------------------------------');
+    if (!name || !email || !message) {
+      return NextResponse.json(
+        { success: false, error: 'Name, email and message are required' },
+        { status: 400 }
+      );
+    }
+
+    const supabase = createClient(
+      process.env.SUPABASE_URL!,
+      process.env.SUPABASE_ANON_KEY!
+    );
+
+    const { error } = await supabase.from('contact_submissions').insert({
+      name,
+      email,
+      phone: phone || null,
+      company: company || null,
+      service: service || 'Web Design & Development',
+      budget: budget || 'Not specified',
+      message,
+    });
+
+    if (error) {
+      console.error('Failed to store contact submission:', error.message);
+      return NextResponse.json(
+        { success: false, error: 'Failed to store your inquiry. Please try again.' },
+        { status: 500 }
+      );
+    }
 
     return NextResponse.json({
       success: true,
