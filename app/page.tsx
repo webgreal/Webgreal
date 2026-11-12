@@ -584,6 +584,7 @@ export default function WebgrealLandingPage() {
             <a href="#work" className="text-sm font-medium text-gray-600 hover:text-brand transition-colors duration-150 relative py-1 after:absolute after:bottom-0 after:left-0 after:w-0 after:h-[2px] after:bg-brand after:transition-all after:duration-300 hover:after:w-full">Work</a>
             <a href="#process" className="text-sm font-medium text-gray-600 hover:text-brand transition-colors duration-150 relative py-1 after:absolute after:bottom-0 after:left-0 after:w-0 after:h-[2px] after:bg-brand after:transition-all after:duration-300 hover:after:w-full">Process</a>
             <a href="#faq" className="text-sm font-medium text-gray-600 hover:text-brand transition-colors duration-150 relative py-1 after:absolute after:bottom-0 after:left-0 after:w-0 after:h-[2px] after:bg-brand after:transition-all after:duration-300 hover:after:w-full">FAQ</a>
+            <a href="/hosting" className="text-sm font-medium text-gray-600 hover:text-brand transition-colors duration-150 relative py-1 after:absolute after:bottom-0 after:left-0 after:w-0 after:h-[2px] after:bg-brand after:transition-all after:duration-300 hover:after:w-full">Hosting</a>
           </div>
 
           {/* Call CTA Button */}
@@ -651,6 +652,12 @@ export default function WebgrealLandingPage() {
                 className="py-2.5 px-4 rounded-xl text-base font-semibold text-gray-800 hover:bg-brand-light/10 hover:text-brand transition-all flex items-center justify-between"
               >
                 FAQ <ArrowRight className="w-4 h-4 opacity-50" />
+              </a>
+              <a href="/hosting"
+                onClick={() => setMobileMenuOpen(false)}
+                className="py-2.5 px-4 rounded-xl text-base font-semibold text-gray-800 hover:bg-brand-light/10 hover:text-brand transition-all flex items-center justify-between"
+              >
+                Hosting <ArrowRight className="w-4 h-4 opacity-50" />
               </a>
 
               <hr className="border-gray-100 my-2" />
